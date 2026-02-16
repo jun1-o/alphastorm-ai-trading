@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+models/
+checkpoints/
+*.ckpt
+*.bin
+data/private/
