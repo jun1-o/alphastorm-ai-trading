@@ -1,4 +1,8 @@
-# alphastorm-ai-trading (Public-Safe Demo)
+# AlphaStorm — AI-driven algorithmic trading framework (Public-Safe Demo)
+
+## Project Overview
+
+AlphaStorm is a Python-based trading framework that demonstrates how machine learning, strategy research, and execution workflows can be composed into a single quantitative system. This public repository is intentionally safety-scoped for demonstration, while preserving the core architecture for backtesting and pipeline orchestration.
 
 This repository is a **public-safe, stripped-down showcase** of an AI trading system architecture.
 It is designed for portfolio/recruiter review and intentionally removes anything that can reproduce a profitable live strategy.
@@ -20,6 +24,21 @@ It is designed for portfolio/recruiter review and intentionally removes anything
 - `backtest/` – simulation engine.
 - `rag/` – strategy context query layer (placeholder in safe mode).
 - `scripts/` – runnable entrypoints for data generation, backtest, and demo trading.
+
+## Feature Coverage
+
+- Python-based quantitative workflow.
+- Machine learning model interface for strategy scoring.
+- Algorithmic strategy signal generation and backtesting.
+- Real-time style execution simulation (dry-run only in public-safe mode).
+- Risk-aware simulation via position lifecycle and PnL accounting.
+- Data engineering pipeline for synthetic sample generation.
+- MLOps-style modular split between training, inference, and execution.
+- Streamlit dashboard support as part of the full project scope.
+
+## Discovery Keywords
+
+Python, Machine Learning, Algorithmic Trading, Backtesting, Quantitative Finance, Real-time Execution, Risk Management, MLOps, Data Engineering, Trading Strategy Evaluation, MT5 Integration, Streamlit, Time Series Analysis, and Testing Workflows.
 
 ## AI + Backtest + RAG Pipeline
 
