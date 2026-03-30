@@ -64,6 +64,7 @@ From a system perspective, the repository links synthetic and historical **Time 
 - Modular **Python** package layout for rapid **AI** prototyping
 - Research-ready **Machine Learning** and **Time Series** structure
 - Systematic **Backtesting** for strategy validation
+- **🚀 NEW: Exit Optimization Strategy** with trend-following logic for profit maximization
 - Extensible hooks for **MetaTrader5** and **Streamlit** visualization
 - **MLOps**-aligned design for reproducible experiments
 - Built-in emphasis on **Risk Management** and robust **Testing**
@@ -103,9 +104,50 @@ From a system perspective, the repository links synthetic and historical **Time 
 
 ## Quick Start
 
+### Basic Backtesting
 ```bash
-python scripts/run_backtest.py
-python scripts/run_demo_trading.py --dry-run
+python3 scripts/run_backtest.py
+python3 scripts/run_demo_trading.py --dry-run
+```
+
+### Exit Optimization Strategy (NEW)
+```bash
+# Run backtest with Exit optimization
+python3 scripts/run_exit_backtest.py --bars 200
+
+# Run demo with Exit strategy
+python3 scripts/run_exit_demo.py --dry-run --bars 50
+
+# Tune parameters
+python3 scripts/run_exit_backtest.py --bars 200 \
+  --time-tolerance 600 \
+  --loss-tolerance 1.0
 ```
 
 The public-safe mode keeps execution non-live while preserving architectural clarity for **AI**, **Machine Learning**, **Backtesting**, **MLOps**, and **Risk Management** discussions.
+
+## Exit Optimization Strategy
+
+The **Exit Optimization** module (`trading/exit_policy.py`) implements a trend-following exit strategy designed to maximize profit while managing risk:
+
+### Key Features
+- **Trend-based holding**: Maintains positions while trend is alive
+- **Time & loss tolerance**: Allows small drawdowns during trending markets
+- **Trailing stop**: Protects profits with configurable trailing percentage
+- **Profit targets**: Automatic exit at configurable profit levels
+- **Trend reversal detection**: Exits when market direction changes
+
+### Exit Conditions
+1. **profit_target**: Exit when profit reaches target (default 1.0%)
+2. **trailing_stop**: Exit when price drops from peak (default 0.3%)
+3. **trend_dead_loss**: Exit when trend dies and position is in loss
+4. **trend_reversal**: Exit when position direction conflicts with trend
+5. **loss_timeout**: Exit when loss exceeds tolerance after time limit
+
+### Configurable Parameters
+- `time_tolerance_sec`: Duration to tolerate small losses (default: 300s)
+- `loss_tolerance_pct`: Maximum loss tolerance percentage (default: 0.5%)
+- `profit_target_pct`: Profit target percentage (default: 1.0%)
+- `trailing_stop_pct`: Trailing stop percentage (default: 0.3%)
+
+See `analysis/exit_tuning_recommendations.md` for detailed tuning guidance.
